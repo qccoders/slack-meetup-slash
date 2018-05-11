@@ -10,11 +10,16 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 app.post('/meetup/next', (req,res) => {
   console.log(req.body)
-  getNextMeetup()
-  .then(data => {
-    res.status(200).json({})
-  })
-  .catch(e => console.log(e))
+  if(req.body.text === 'next') {
+    getNextMeetup()
+    .then(data => {
+      res.status(200).json({})
+    })
+    .catch(e => console.log(e))
+
+  }else {
+    res.status(200).json({text: 'Not sure what you meant, try adding "next" after `/meetup`'})
+  }
 })
 
 app.listen(PORT, () => console.log(`express server listening on port: ${PORT}`))
