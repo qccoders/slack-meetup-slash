@@ -13,7 +13,7 @@ app.post('/meetup/next', (req,res) => {
     console.log(req.body)
     getNextMeetup()
     .then(data => {
-      res.status(200).json({text: data})
+      res.status(200).json({text: data, response_type: 'in_channel'})
     })
     .catch(e => console.log(e))
 
