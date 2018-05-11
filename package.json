@@ -5,6 +5,9 @@
   "repository": "https://github.com/mtliendo/slack-meetup-slash.git",
   "author": "Michael Liendo <model3volution@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.3"
