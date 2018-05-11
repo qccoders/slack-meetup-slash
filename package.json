@@ -1,0 +1,22 @@
+{
+  "name": "slack-meetup-slash",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mtliendo/slack-meetup-slash.git",
+  "author": "Michael Liendo <model3volution@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
+    "date-fns": "^2.0.0-alpha.7",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}
