@@ -6,13 +6,16 @@
   "author": "Michael Liendo <model3volution@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
     "express": "^4.16.3"
   },
   "devDependencies": {
-    "dotenv": "^5.0.1"
+    "dotenv": "^5.0.1",
+    "nodemon": "^1.17.4"
   }
 }
