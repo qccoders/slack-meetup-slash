@@ -1,12 +1,12 @@
 const axios = require('axios')
 
 const URL = process.env.MEETUP_ENDPOINT
-
 const NEXT_EVENT_DEFAULTS = {
   name: 'Not yet assigned',
   yes_rsvp_count:0,
-  time: new Date.now()
+  time: new Date().now
 }
+
 const parseInfo = (meetupJSON = {}) => {
   const {
     timezone = 'US/Central', 
@@ -21,11 +21,11 @@ const parseInfo = (meetupJSON = {}) => {
 
 const getNextMeetup = () => {
   return new Promise((resolve, reject) => {
-    return axios.get(url)
+    return axios.get(URL)
     .then(res => res.data)
     .then(parseInfo)
     .then(nextMeetupInfo => resolve(nextMeetupInfo))
-    .catch(e => reject('error: ', e.message))
+    .catch(err => reject(err))
   })
 }
 
