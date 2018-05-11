@@ -1,10 +1,18 @@
 const axios = require('axios')
+const format = require('date-fns').format
 
 const URL = process.env.MEETUP_ENDPOINT
 const NEXT_EVENT_DEFAULTS = {
   name: 'Not yet assigned',
   yes_rsvp_count:0,
-  time: new Date().now
+  time: undefined
+}
+
+const formatMeetupMessage = (meetupInfo) => {
+  return `Next meetup: ${meetupInfo.next_event.name},
+  is going to be on ${format(meetupInfo.next_event.time, 'MM dddd')} ${meetupInfo.timezone}.
+  Currently, there are ${meetupInfo.next_event.yes_rsvp_count} people going.
+  `
 }
 
 const parseInfo = (meetupJSON = {}) => {
@@ -12,11 +20,7 @@ const parseInfo = (meetupJSON = {}) => {
     timezone = 'US/Central', 
     next_event = NEXT_EVENT_DEFAULTS
   } = meetupJSON
-
-  return {
-    timezone,
-    next_event
-  }
+  return formatMeetupMessage({timezone, next_event})
 }
 
 const getNextMeetup = () => {

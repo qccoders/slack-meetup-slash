@@ -9,15 +9,16 @@ const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
 
 app.post('/meetup/next', (req,res) => {
-  console.log(req.body)
   if(req.body.text === 'next') {
+    console.log(req.body)
     getNextMeetup()
     .then(data => {
-      res.status(200).json({})
+      res.status(200).json({text: data})
     })
     .catch(e => console.log(e))
 
   }else {
+    console.log('here')
     res.status(200).json({text: 'Not sure what you meant, try adding "next" after `/meetup`'})
   }
 })
