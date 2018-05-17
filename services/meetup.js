@@ -1,6 +1,16 @@
 const fetch = require('./qccoders-fetch')
 const URL = process.env.MEETUP_ENDPOINT
 
+const formatCommands = (commands) => {
+  let stringList = ''
+
+  Object.values(commands).forEach(val => {
+    return stringList += `\`${val.name}: ${val.desc}\` \n`
+  })
+  console.log(stringList)
+  return stringList
+}
+
 const formatRSVPMessage = (meetupInfo) => {
   return `Currently, there are ${meetupInfo.next_event.yes_rsvp_count} people going.`
 }
@@ -20,3 +30,4 @@ const getNextMeetup = () => {
 }
 
 module.exports.getNextMeetup = getNextMeetup
+module.exports.formatCommands = formatCommands

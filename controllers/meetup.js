@@ -1,6 +1,6 @@
 const {getNextMeetup} = require('../services/meetup')
-const supportedCommands = require('../constants/supported-commands.js')
-
+const getCommands = require('../constants/supported-commands.js').getCommands
+const formatCommands = require('../services/meetup').formatCommands
 const sendMeetupInfoToSlack = (res,data) => {
   res.status(200).json(
     {text: `${data.nextMeetupLink}`, 
@@ -9,17 +9,25 @@ const sendMeetupInfoToSlack = (res,data) => {
   })
 }
 
-const getCommands = () => {
-  return supportedCommands
+const sendCommandsToSlack = (res, commands) => {
+  const slackText = formatCommands(commands)
+  console.log('formatted commands: ', slackText)
+  res.status(200).json(
+    {text: `List of possible commands:
+    ${slackText}`}
+  )
 }
 
-const meetupInfo = (req,res) => {
+const meetupInfo = async (req,res) => {
+
+  const {next, help} = await getCommands()
+
   switch(req.body.text) {
-    case 'next': 
+    case next.name :  
       return getNextMeetup()
         .then(sendMeetupInfoToSlack.bind(undefined, res))
         .catch(e => console.error(e))
-    case 'help': 
+    case help.name: 
       return getCommands()
         .then(sendCommandsToSlack.bind(undefined,res))
         .catch(e => console.error(e))
