@@ -13,7 +13,11 @@ app.post('/meetup/next', (req,res) => {
     console.log(req.body)
     getNextMeetup()
     .then(data => {
-      res.status(200).json({text: `${data.nextMeetupLink} ${data.message}`, response_type: 'in_channel'})
+      res.status(200).json(
+        {text: `${data.nextMeetupLink}`, 
+        response_type: 'in_channel',
+        attachments:[{text: `${data.message}`}]
+      })
     })
     .catch(e => console.log(e))
 
