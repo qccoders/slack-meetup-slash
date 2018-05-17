@@ -1,6 +1,7 @@
 const {getNextMeetup} = require('../services/meetup')
+const supportedCommands = require('../constants/supported-commands.js')
 
-const sendToSlack = (res,data) => {
+const sendMeetupInfoToSlack = (res,data) => {
   res.status(200).json(
     {text: `${data.nextMeetupLink}`, 
     response_type: 'in_channel',
@@ -8,13 +9,23 @@ const sendToSlack = (res,data) => {
   })
 }
 
-const meetupNext = (req,res) => {
-  req.body.text === 'next' ? 
-    (getNextMeetup()
-      .then(sendToSlack.bind(undefined, res))
-      .catch(e => console.log(e))
-    ) 
-    : res.status(200).json({text: 'Not sure what you meant, try adding "help" after `/meetup for possible commands`'})
+const getCommands = () => {
+  return supportedCommands
 }
 
-module.exports.meetupNext = meetupNext
+const meetupInfo = (req,res) => {
+  switch(req.body.text) {
+    case 'next': 
+      return getNextMeetup()
+        .then(sendMeetupInfoToSlack.bind(undefined, res))
+        .catch(e => console.error(e))
+    case 'help': 
+      return getCommands()
+        .then(sendCommandsToSlack.bind(undefined,res))
+        .catch(e => console.error(e))
+    
+    default: res.status(200).json({text: 'Not sure what you meant, try adding "help" after `/meetup for possible commands`'})
+  }
+}
+
+module.exports.meetupInfo = meetupInfo
