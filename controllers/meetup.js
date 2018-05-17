@@ -13,7 +13,8 @@ const sendCommandsToSlack = (res, commands) => {
   const slackText = formatCommands(commands)
   console.log('formatted commands: ', slackText)
   res.status(200).json(
-    {text: `List of possible commands:
+    {text: `
+    List of possible commands:
     ${slackText}`}
   )
 }
@@ -32,7 +33,7 @@ const meetupInfo = async (req,res) => {
         .then(sendCommandsToSlack.bind(undefined,res))
         .catch(e => console.error(e))
     
-    default: res.status(200).json({text: 'Not sure what you meant, try adding "help" after `/meetup for possible commands`'})
+    default: res.status(200).json({text: 'Not sure what you meant, try adding "help" after `/meetup` for possible commands'})
   }
 }
 
