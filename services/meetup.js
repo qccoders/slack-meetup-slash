@@ -9,10 +9,7 @@ const NEXT_EVENT_DEFAULTS = {
 }
 
 const formatMeetupMessage = (meetupInfo) => {
-  return `Next meetup: ${meetupInfo.next_event.name},
-  is going to be on ${format(meetupInfo.next_event.time, 'MM dddd')} ${meetupInfo.timezone}.
-  Currently, there are ${meetupInfo.next_event.yes_rsvp_count} people going.
-  `
+  return `Currently, there are ${meetupInfo.next_event.yes_rsvp_count} people going.`
 }
 
 const parseInfo = (meetupJSON = {}) => {
