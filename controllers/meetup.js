@@ -14,7 +14,7 @@ const meetupNext = (req,res) => {
       .then(sendToSlack.bind(undefined, res))
       .catch(e => console.log(e))
     ) 
-    : res.status(200).json({text: 'Not sure what you meant, try adding "next" after `/meetup`'})
+    : res.status(200).json({text: 'Not sure what you meant, try adding "help" after `/meetup for possible commands`'})
 }
 
 module.exports.meetupNext = meetupNext
