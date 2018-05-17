@@ -28,7 +28,7 @@ const parseInfo = (meetupJSON = {}) => {
 }
 
 const getNextMeetup = () => {
-    return fetchData(URL)
+    return fetch(URL)
     .then(parseInfo)
     .catch(err => reject(err))
 }
