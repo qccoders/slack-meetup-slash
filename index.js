@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const getNextMeetup = require('./services/meetup').getNextMeetup
+const {getNextMeetup} = require('./services/meetup')
 const bodyParser = require('body-parser')
 
 const PORT = process.env.PORT
@@ -13,7 +13,8 @@ app.post('/meetup/next', (req,res) => {
     console.log(req.body)
     getNextMeetup()
     .then(data => {
-      res.status(200).json({text: data, response_type: 'in_channel'})
+      res.status(200).json({text: data.message, response_type: 'in_channel',
+      attatchments: [{text:data.nextMeetupLink}]})
     })
     .catch(e => console.log(e))
 
