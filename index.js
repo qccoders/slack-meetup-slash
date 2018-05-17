@@ -8,6 +8,6 @@ const app = express()
 
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.post('/meetup/info', meetupInfoController)
+app.post('/meetup/next', meetupInfoController)
 
 app.listen(PORT, () => console.log(`express server listening on port: ${PORT}`))
