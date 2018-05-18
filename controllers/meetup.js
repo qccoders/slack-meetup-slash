@@ -5,6 +5,8 @@ const sendMeetupInfoToSlack = (res,data) => {
   res.status(200).json(
     {text: `${data.nextMeetupLink}`, 
     response_type: 'in_channel',
+    unfurl_links: true,
+    unfurl_media: true,
     attachments:[{text: `*${data.message}*`}]
   })
 }
