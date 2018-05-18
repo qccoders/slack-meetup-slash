@@ -17,7 +17,9 @@ const sendCommandsToSlack = (res, commands) => {
   res.status(200).json(
     {text: `
     List of possible commands:
-    ${slackText}`}
+    ${slackText}`,
+    response_type: 'in_channel',
+  }
   )
 }
 
