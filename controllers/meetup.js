@@ -29,16 +29,16 @@ const sendCommandsToSlack = (res, commands) => {
 const meetupInfo = async (req,res) => {
 
   const {next, help} = await getCommands()
-  const groupname = req.body.text.slice(5)
-  console.log(groupname)
+  const groupname = req.body.text.slice(5).trim()
+ 
   switch(req.body.text.trim()) {
     case next.name :  
       return getNextMeetup()
         .then(sendMeetupInfoToSlack.bind(undefined, res))
         .catch(e => console.error(e))
 
-    case next.name + ` ${groupname}`:
-      return getNextMeetup(groupname.trim())
+    case (next.name + ` ${groupname}`):
+      return getNextMeetup(groupname)
         .then(sendMeetupInfoToSlack.bind(undefined, res))
         .catch(e => console.error(e))
     
