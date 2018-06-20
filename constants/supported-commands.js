@@ -1,7 +1,7 @@
 const commands = Object.freeze({
   next: {
     name:'next',
-    desc: 'view details of the next meetup'
+    desc: 'view details of the next meetup. Optional: append a meetup group\'s name (spaces separated by hyphens).'
   },
   help: {
     name:'help',
