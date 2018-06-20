@@ -23,8 +23,8 @@ const parseInfo = (meetupJSON) => {
   return {message, nextMeetupLink}
 }
 
-const getNextMeetup = () => {
-    return fetch(URL)
+const getNextMeetup = (groupname='qccoders') => {
+    return fetch(`${URL}${groupname}`)
     .then(parseInfo)
     .catch(err => err)
 }

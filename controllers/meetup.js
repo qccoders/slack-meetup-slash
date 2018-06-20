@@ -1,6 +1,7 @@
 const {getNextMeetup} = require('../services/meetup')
 const getCommands = require('../constants/supported-commands.js').getCommands
 const formatCommands = require('../services/meetup').formatCommands
+
 const sendMeetupInfoToSlack = (res,data) => {
   res.status(200).json(
     {text: `${data.nextMeetupLink}`, 
