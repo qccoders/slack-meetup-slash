@@ -16,7 +16,6 @@ const formatRSVPMessage = (meetupInfo) => {
 }
 
 const parseInfo = (meetupJSON) => {
-  console.log(meetupJSON)
   const message = formatRSVPMessage(meetupJSON)
   const nextMeetupLink = `${meetupJSON.link}events/${meetupJSON.next_event.id}`
 
@@ -24,7 +23,6 @@ const parseInfo = (meetupJSON) => {
 }
 
 const getNextMeetup = (groupname='qccoders') => {
-  console.log(`${URL}${groupname}`)
     return fetch(`${URL}${groupname}`)
     .then(parseInfo)
     .catch(err => err)
